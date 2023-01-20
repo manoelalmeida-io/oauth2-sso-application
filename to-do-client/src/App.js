@@ -1,10 +1,14 @@
-import './App.css';
+import { Route, Routes } from 'react-router-dom';
+
+import Home from './pages/Home';
+import LoginCallback from './pages/Login/Callback';
 
 function App() {
   return (
-    <div className="App">
-      <h1>Home Page</h1>
-    </div>
+    <Routes>
+      <Route path='/' element={<Home/>} />
+      <Route path='/login/callback' element={<LoginCallback/>} />
+    </Routes>
   );
 }
 
