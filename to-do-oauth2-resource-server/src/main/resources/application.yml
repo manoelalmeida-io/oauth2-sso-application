@@ -1,2 +1,11 @@
 server:
   port: 8001
+
+spring:
+  cloud:
+    azure:
+      active-directory:
+        enabled: true
+        credential:
+          client-id: ${CLIENT_ID}
+        app-id-uri: ${APP_ID_URI}
