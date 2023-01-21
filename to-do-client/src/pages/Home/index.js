@@ -1,8 +1,7 @@
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import api from '../../services/todo-api';
 
 function Home() {
-  const [tasks, setTasks] = useState([]);
 
   useEffect(() => {
     loadTasks();
