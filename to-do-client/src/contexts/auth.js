@@ -5,6 +5,7 @@ import { challengeFromVerifier } from "../utils/code-challenge";
 
 const AuthContext = createContext({
   loginRedirect: () => {},
+  logout: () => {},
   auth: () => {}
 });
 
@@ -35,6 +36,21 @@ export const AuthProvider = ({ children }) => {
   
       window.location.href = url.href;
     });
+  }
+
+  function logout() {
+    localStorage.removeItem(process.env.REACT_APP_TOKEN_KEY);
+    
+    const data = {
+      post_logout_redirect_uri: process.env.REACT_APP_REDIRECT_URI_LOGOUT
+    };
+
+    const params = new URLSearchParams(data);
+
+    const url = new URL('logout', process.env.REACT_APP_MICROSOFT_OAUTH2_URI);
+    url.search = params.toString();
+
+    window.location.href = url.href;
   }
 
   async function auth(code, state) {
@@ -68,7 +84,7 @@ export const AuthProvider = ({ children }) => {
   }
 
   return (
-    <AuthContext.Provider value={{ loginRedirect, auth }}>
+    <AuthContext.Provider value={{ loginRedirect, logout, auth }}>
       {children}
     </AuthContext.Provider>
   );

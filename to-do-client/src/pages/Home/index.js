@@ -1,7 +1,9 @@
-import { useEffect } from "react";
+import { useContext, useEffect } from "react";
 import api from '../../services/todo-api';
+import AuthContext from "../../contexts/auth";
 
 function Home() {
+  const { logout } = useContext(AuthContext);
 
   useEffect(() => {
     loadTasks();
@@ -16,6 +18,7 @@ function Home() {
   return (
     <div>
       <h1>Home Page</h1>
+      <button onClick={logout}>Sair</button>
     </div>
   );
 }
